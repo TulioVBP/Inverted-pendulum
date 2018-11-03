@@ -54,20 +54,22 @@ for ii = 1:N
 end
 grid on
 
-%% Velocity evaluation
+%% Velocity and acceleration evaluation
 figure
-for choice = 1:N
+%for choice = 1:N
     %choice = 1;
     % Calculate the velocity curve
     x = cart(sampling_points(:,choice) ==1,choice);
     t = time(sampling_points(:,choice) ==1);
     t = t - min(t);
-    v = diff(x)./diff(t); 
+    v = diff(x)./diff(t);
+    acc = diff(v)./diff(t);
 
-    plot(t,x)
+    plot(t,x,'-b',t(1:end-1),v,'--r',t(1:end-2),acc,'-.k','LineWidth',1.5)
     hold on
     grid on
-end
+%end
 xlabel('t [s]')
-ylabel('Velocity [mm/s]')
-    
+ylabel('Quantities [mm/s]')
+
+%
